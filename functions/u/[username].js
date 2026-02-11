@@ -1,30 +1,31 @@
 export async function onRequest(context) {
   const { username } = context.params;
 
-  const authHeader = context.request.headers.get("authorization");
+  const url = new URL(context.request.url);
+  const token = url.searchParams.get("token");
 
-  if (!authHeader) {
+  if (!token) {
     return new Response("Unauthorized - No token", { status: 401 });
   }
 
-  const token = authHeader.replace("Bearer ", "");
-
-  // Verify token using Supabase
-  const response = await fetch(
-    `${context.env.SUPABASE_URL}/auth/v1/user`,
+  // Verify token exists in database and not expired
+  const verifyResponse = await fetch(
+    `${context.env.SUPABASE_URL}/rest/v1/access_tokens?token=eq.${token}&owner_username=eq.${username}&expires_at=gt.${new Date().toISOString()}`,
     {
       headers: {
-        Authorization: `Bearer ${token}`,
-        apikey: context.env.SUPABASE_ANON_KEY
+        apikey: context.env.SUPABASE_ANON_KEY,
+        Authorization: `Bearer ${context.env.SUPABASE_ANON_KEY}`
       }
     }
   );
 
-  if (!response.ok) {
-    return new Response("Unauthorized - Invalid session", { status: 401 });
+  const tokenData = await verifyResponse.json();
+
+  if (!tokenData || tokenData.length === 0) {
+    return new Response("Unauthorized - Invalid or expired token", { status: 401 });
   }
 
-  // If valid → fetch external profile
+  // Fetch external profile
   const externalUrl = `https://${username}.github.io/${username}.html`;
 
   try {
