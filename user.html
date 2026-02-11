@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>User Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="dashboard.css" />
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  >
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="brand">
+    <div class="logo">MY</div>
+    <span>My Profile Chat</span>
+  </div>
+  <button class="theme-toggle" id="themeBtn">🌙</button>
+</div>
+
+<div class="app dashboard">
+
+  <h1>User Dashboard</h1>
+
+  <!-- Welcome Section -->
+  <div class="dash-card">
+    <p id="welcome"></p>
+  </div>
+
+  <!-- Friend Access -->
+  <div class="dash-card">
+    <h2>Create Temporary Friend Password</h2>
+
+    <input id="friendPass" placeholder="Friend Password">
+    <input id="duration" type="number" placeholder="Duration (hours)" value="6">
+
+    <div class="button-group">
+      <button id="createFriendBtn">Create Friend Access</button>
+    </div>
+  </div>
+
+  <!-- Active Access -->
+  <div class="dash-card">
+    <h2>Active Friend Access</h2>
+    <div id="friendAccessList"></div>
+  </div>
+
+  <!-- Change Password -->
+  <div class="dash-card">
+    <h2>Change Password</h2>
+
+    <input id="newPassword" type="password" placeholder="New Password">
+
+    <div class="button-group">
+      <button id="changePassBtn">Update Password</button>
+      <button id="goProfileBtn">Go To My Profile</button>
+      <button id="logoutBtn">Logout</button>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  © 2026 My Profile Chat
+</footer>
+
+
+<!-- User Logic -->
+<script type="module" src="user.js"></script>
+
+<!-- Theme Script -->
+<script src="dashboard-theme.js"></script>
+
+</body>
+</html>

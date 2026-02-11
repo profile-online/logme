@@ -1,0 +1,162 @@
+/* ============================= */
+/* DASHBOARD THEME (ADMIN/USER) */
+/* ============================= */
+
+:root {
+  --bg: #0f1020;
+  --card: #1b1d3a;
+  --text: #ffffff;
+  --muted: #cfd2ff;
+  --primary: #6c63ff;
+  --secondary: #ff6584;
+  --bar: #14162e;
+}
+
+body.light {
+  --bg: #f4f6ff;
+  --card: #ffffff;
+  --text: #0f1020;
+  --muted: #555;
+  --bar: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  transition: 0.4s ease;
+}
+
+/* TOP BAR */
+.top-bar {
+  position: sticky;
+  top: 0;
+  background: var(--bar);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.8rem 1.2rem;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+}
+
+.theme-toggle {
+  border: none;
+  background: var(--card);
+  color: var(--text);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* MAIN CONTAINER */
+.dashboard {
+  max-width: 1100px;
+  margin: auto;
+  padding: 2rem 1rem;
+}
+
+/* Responsive grid for desktop */
+@media (min-width: 900px) {
+  .dashboard {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+
+  .dashboard h1 {
+    grid-column: span 2;
+    text-align: center;
+  }
+}
+
+/* Cards */
+.dash-card {
+  background: var(--card);
+  padding: 1.6rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+  margin-bottom: 1.5rem;
+}
+
+/* Inputs */
+input {
+  width: 100%;
+  padding: 0.85rem;
+  margin-bottom: 1rem;
+  border-radius: 12px;
+  border: 1px solid rgba(108, 99, 255, 0.4);
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* Buttons */
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.dashboard button {
+  flex: 1;
+  min-width: 120px;
+  padding: 0.75rem;
+  border-radius: 25px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+}
+
+.theme-toggle {
+  flex: unset !important;
+  min-width: unset !important;
+  padding: 0;
+  width: 36px;
+  height: 36px;
+}
+
+#logoutBtn {
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+}
+
+/* Lists */
+#userList,
+#friendAccessList {
+  background: var(--bg);
+  padding: 1rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 2rem 0;
+  color: var(--muted);
+}

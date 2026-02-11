@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Help Bot | My Profile Chat</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<!-- Link to external CSS -->
+<link rel="stylesheet" href="botstyle.css" />
+
+<!-- Google Fonts -->
+<link
+  href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;500&display=swap"
+  rel="stylesheet"
+/>
+</head>
+
+<body>
+<!-- NAVBAR -->
+<div class="navbar">
+  <div class="brand">
+    <div class="logo">MY</div>
+    <span>Support Bot</span>
+  </div>
+  <button class="icon-btn" id="themeBtn">🌙</button>
+</div>
+
+<!-- BOT INFO -->
+<div class="bot-info">
+  🤖 Ask me anything about <strong>My Profile Chat</strong>
+</div>
+
+<!-- CHAT -->
+<div class="chat-wrapper">
+  <div class="messages" id="messages">
+    <div class="msg bot">
+      Hi 👋 I’m the My Profile Chat support bot.<br>
+      I can help you with chat rooms, privacy, temp chats, and access issues.
+    </div>
+  </div>
+
+  <div class="input-bar">
+    <input id="input" placeholder="Ask a question..." />
+    <button class="send-btn" onclick="send()">Send</button>
+  </div>
+</div>
+
+<script src="botscript.js"></script>
+</body>
+</html>

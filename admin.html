@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="dashboard-admin.css" />
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  >
+</head>
+
+
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="brand">
+    <div class="logo">MY</div>
+    <span>My Profile Chat</span>
+    </div>
+     <button class="theme-toggle" id="themeBtn">🌙</button>
+    </div>
+
+    <div class="app dashboard">
+
+    <h1>Admin Dashboard 👑</h1>
+
+<div class="dash-card">
+  <h2>Create New User</h2>
+
+  <input id="newEmail" placeholder="User Email">
+  <input id="newPassword" type="password" placeholder="Temporary Password">
+  <input id="newUsername" placeholder="Username (alex)">
+  <input id="newRedirect" placeholder="Redirect URL">
+
+  <div class="button-group">
+    <button id="createUserBtn">Create User</button>
+  </div>
+</div>
+
+<div class="dash-card">
+  <h2>Existing Users</h2>
+
+  <div class="button-group">
+    <button id="loadUsersBtn">Load Users</button>
+  </div>
+
+  <div id="userList"></div>
+</div>
+
+<div class="dash-card">
+  <div class="button-group">
+    <button id="logoutBtn">Logout</button>
+  </div>
+</div>
+
+
+
+
+    <script type="module" src="admin.js"></script>
+
+    <!-- Theme Script -->
+    <script src="dashboard-theme.js"></script>
+
+</body>
+
+    <footer>
+    © 2026 My Profile Chat
+    </footer>

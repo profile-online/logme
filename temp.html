@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Temp Chat • My Profile Chat</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <!-- Link to CSS -->
+  <link rel="stylesheet" href="tempstyle.css" />
+</head>
+
+<body>
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="brand">
+      <div class="logo">MY</div>
+      <span>My Profile Chat</span>
+    </div>
+    <button class="theme-toggle" id="themeBtn">🌙</button>
+  </div>
+
+  <!-- MAIN -->
+  <div class="container">
+    <div class="card">
+      <h2>🗨️ Join Temp Chat</h2>
+
+      <!-- UPDATED MESSAGE -->
+      <div class="info-box">
+        <div class="rule">
+          <span>🕒</span>
+          <p>Temp chats are <strong>not saved</strong></p>
+        </div>
+        <div class="rule">
+          <span>🔑</span>
+          <p>Same room code = same chat room</p>
+        </div>
+        <div class="rule">
+          <span>👥</span>
+          <p>Share the code with your partner to chat privately</p>
+        </div>
+      </div>
+
+      <input type="text" id="room-code-input" placeholder="Enter Room Code" />
+      <button id="join-btn">Join Room</button>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 My Profile Chat
+  </footer>
+
+  <!-- Link to JS -->
+  <script src="tempscript.js"></script>
+
+</body>
+</html>

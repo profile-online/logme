@@ -1,0 +1,262 @@
+/* ============================= */
+/* MODERN ADMIN DASHBOARD STYLE */
+/* ============================= */
+
+:root {
+  --bg: #0c0f2b;
+  --card: #161a3d;
+  --text: #ffffff;
+  --muted: #b9c0ff;
+  --primary: #6c63ff;
+  --secondary: #ff6584;
+  --bar: #141735;
+  --border: rgba(108, 99, 255, 0.25);
+}
+
+body.light {
+  --bg: #f4f6ff;
+  --card: #ffffff;
+  --text: #0f1020;
+  --muted: #555;
+  --bar: #ffffff;
+  --border: rgba(108, 99, 255, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Poppins', sans-serif;
+  transition: 0.4s ease;
+}
+
+/* ================= TOP BAR ================= */
+
+.top-bar {
+  position: sticky;
+  top: 0;
+  background: var(--bar);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.9rem 1.5rem;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.theme-toggle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: var(--card);
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ================= LAYOUT ================= */
+
+.dashboard {
+  max-width: 1200px;
+  margin: auto;
+  padding: 3rem 1.2rem;
+}
+
+.dashboard h1 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  margin-bottom: 2.5rem;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* Desktop Grid */
+@media (min-width: 1000px) {
+  .dashboard {
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 2.5rem;
+  }
+
+  .dashboard h1 {
+    grid-column: span 2;
+  }
+}
+
+/* ================= CARDS ================= */
+
+.dash-card {
+  background: var(--card);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+  border: 1px solid var(--border);
+  transition: 0.3s ease;
+}
+
+.dash-card:hover {
+  transform: translateY(-6px);
+}
+
+/* Section Titles */
+.dash-card h2 {
+  margin-bottom: 1.4rem;
+  font-size: 1.3rem;
+  color: var(--primary);
+}
+
+/* ================= INPUTS ================= */
+
+input {
+  width: 100%;
+  padding: 0.95rem 1rem;
+  margin-bottom: 1.2rem;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.95rem;
+  transition: 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--secondary);
+  box-shadow: 0 0 15px rgba(255,101,132,0.4);
+}
+
+/* ================= BUTTONS ================= */
+
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.dashboard button {
+  flex: 1;
+  min-width: 140px;
+  padding: 0.85rem;
+  border-radius: 40px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: white;
+  transition: 0.3s ease;
+}
+
+.dashboard button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(255,101,132,0.4);
+}
+
+#logoutBtn {
+  background: linear-gradient(135deg, #ff4d6d, #ff758f);
+}
+
+/* ================= LIST SECTION ================= */
+
+#userList {
+  background: var(--bg);
+  padding: 1rem;
+  border-radius: 14px;
+  margin-top: 1rem;
+  min-height: 70px;
+  border: 1px solid var(--border);
+  font-size: 0.9rem;
+}
+
+/* ================= FOOTER ================= */
+
+footer {
+  text-align: center;
+  padding: 3rem 0 2rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ================= MOBILE REFINEMENT ================= */
+
+@media (max-width: 600px) {
+  .dash-card {
+    padding: 1.5rem;
+  }
+
+  .dashboard button {
+    width: 100%;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+}
+
+/* ========================= */
+/* FORCE RESPONSIVE FIX     */
+/* ========================= */
+
+/* Make every generated user card responsive */
+#userList > div {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box;
+}
+
+/* Fix inner content wrapping */
+#userList * {
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Make inner inputs responsive */
+#userList input {
+  width: 100% !important;
+  max-width: 100%;
+}
+
+/* Make buttons stack nicely on mobile */
+@media (max-width: 600px) {
+  #userList .button-group {
+    flex-direction: column;
+  }
+
+  #userList button {
+    width: 100%;
+  }
+}
+
+/* Style each user card */
+#userList > div {
+  background: var(--card);
+  padding: 1.5rem;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  margin-bottom: 1.5rem;
+}

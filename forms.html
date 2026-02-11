@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Request a Chatroom</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="stylesheet" href="formstyles.css" />
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="brand">
+    <div class="logo">MY</div>
+    <span>My Profile Chat</span>
+  </div>
+  <button class="theme-toggle" id="themeBtn">🌙</button>
+</div>
+
+<div class="container">
+  <div class="form-card">
+    <h1>Request a Chatroom</h1>
+    <!-- <p class="subtitle">Tell us why you need a private space</p> -->
+
+    <form
+      id="requestForm"
+      action="https://formspree.io/f/maqdyzdb"
+      method="POST"
+    >
+      <label>Name</label>
+      <input required name="name" />
+
+      <label>Email</label>
+      <input required type="email" name="email" />
+
+      <label>Purpose</label>
+      <textarea required name="purpose"></textarea>
+
+      <div class="captcha-box">
+        <strong id="captchaQ"></strong>
+        <input id="captchaA" type="number" placeholder="Answer" required />
+      </div>
+
+      <div class="checkbox">
+        <label class="checkbox-wrap">
+          <input type="checkbox" required />
+          <span class="checkbox-text">
+            I agree to the
+            <a href="#" onclick="openModal('terms')">Terms & Conditions</a>
+            and
+            <a href="#" onclick="openModal('privacy')">Privacy Policy</a>
+          </span>
+        </label>
+      </div>
+
+      <button class="submit-btn">Send Request</button>
+    </form>
+
+    <div
+      id="successMsg"
+      class="success-message"
+      style="
+        display:none;
+        margin-top:1.5rem;
+        padding:1rem;
+        border-radius:14px;
+        background:rgba(108,99,255,.15);
+        color:var(--text);
+        text-align:center;
+        font-weight:500;
+      "
+    >
+      ✅ Your request has been submitted successfully.<br />
+      We’ll review it and get back to you soon.
+    </div>
+  </div>
+</div>
+
+<footer>© 2026 My Profile Chat</footer>
+
+<!-- TERMS MODAL -->
+<div class="modal" id="termsModal">
+  <div class="modal-content">
+    <h2>Terms & Conditions</h2>
+    <p>This service provides temporary and private chatrooms. Chats may not be stored or recoverable.</p>
+    <p>You are responsible for how you use the platform. Illegal, abusive, or harmful content is prohibited.</p>
+    <p>We reserve the right to deny access or remove chatrooms that violate our policies.</p>
+    <button class="close-btn" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<!-- PRIVACY MODAL -->
+<div class="modal" id="privacyModal">
+  <div class="modal-content">
+    <h2>Privacy Policy</h2>
+    <p>We collect only the information you submit through this form.</p>
+    <p>Your data is used solely to manage chatroom requests and is not shared with third parties.</p>
+    <p>Temporary chat messages are not stored permanently.</p>
+    <button class="close-btn" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script src="formscript.js"></script>
+</body>
+</html>

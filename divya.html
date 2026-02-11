@@ -1,0 +1,10 @@
+<script>
+const username =
+  window.location.pathname
+  .replace("/", "")
+  .replace(".html", "");
+
+localStorage.setItem("requestedProfile", username);
+
+window.location.href = "/login.html";
+</script>

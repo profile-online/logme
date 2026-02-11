@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Login Page</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<link href="loginstyles.css" rel="stylesheet" />
+
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+  <div class="brand">
+    <div class="logo">MY</div>
+    <span>My Profile Chat</span>
+  </div>
+  <button class="theme-toggle" id="themeBtn">🌙</button>
+</div>
+
+<!-- MAIN -->
+<div class="main">
+  <div class="login-card">
+    <h1>Login Page</h1>
+    <p>
+      Protected profile page.<br>
+      Enter your email and password to continue or else enter your friend passwod to continue.
+    </p>
+ 
+    <input type="email" id="email" placeholder="Email">
+    <input type="password" id="password" placeholder="Password">
+    <button class="login-btn" id="loginBtn">Login</button>
+    <br/>
+    <hr>
+    <br/>
+    <h3>Friend Access</h3>
+
+    <input id="friendPassword" type="password"
+       placeholder="Friend Temporary Password">
+
+      <button id="friendLoginBtn">
+  Login as Friend
+      </button>
+
+
+    <div class="error" id="errorMsg">Incorrect password. Try again.</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>© 2026 My Profile Chat</footer>
+
+<script type="module" src="login.js"></script>
+
+<!-- Theme Script -->
+  <script src="dashboard-theme.js"></script>
+
+
+
+</body>
+</html>
