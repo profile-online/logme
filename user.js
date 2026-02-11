@@ -121,7 +121,7 @@ document.getElementById("createFriendBtn")
 document.getElementById("goProfileBtn")
 .addEventListener("click", () => {
   window.location.href =
-    currentUserProfile.redirect_url;
+    "/u/" + currentUserProfile.username;
 });
 
 /* =========================
@@ -194,4 +194,5 @@ window.revokeFriend = async function(id) {
 
   alert("Friend access revoked");
   loadFriendAccess();
+
 };
