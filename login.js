@@ -23,7 +23,6 @@ loginBtn.addEventListener("click", async () => {
     return;
   }
 
-  // Get profile info
   const { data: profile, error: profileError } =
     await supabase
       .from("profiles")
@@ -37,12 +36,11 @@ loginBtn.addEventListener("click", async () => {
     return;
   }
 
-  // Redirect based on role
   if (profile.role === "admin") {
-  window.location.href = "/admin.html";
- } else {
-  window.location.href = "/user.html";
- }
+    window.location.href = "/admin.html";
+  } else {
+    window.location.href = "/user.html";
+  }
 
 });
 
@@ -50,8 +48,7 @@ loginBtn.addEventListener("click", async () => {
    FRIEND LOGIN
 ========================= */
 
-const friendBtn =
-  document.getElementById("friendLoginBtn");
+const friendBtn = document.getElementById("friendLoginBtn");
 
 friendBtn.addEventListener("click", async () => {
 
@@ -92,36 +89,25 @@ friendBtn.addEventListener("click", async () => {
     return;
   }
 
-  // Redirect directly for now
-  const { data: profile } =
-    await supabase
-      .from("profiles")
-      .select("redirect_url")
-      .eq("username", requestedProfile)
-      .single();
+  await cleanupExpired(supabase);
 
-      await cleanupExpired(supabase);
-      
-     // Generate secure token
-    const token = crypto.randomUUID();
-
-    // Expire in 1 hour
-    const tokenExpiry =
+  const token = crypto.randomUUID();
+  const tokenExpiry =
     new Date(Date.now() + 60 * 60 * 1000);
 
-    // Save token in database
-    await supabase
-  .from("access_tokens")
-  .insert({
-    owner_username: requestedProfile,
-    token: token,
-    access_type: "friend",
-    expires_at: tokenExpiry
-  });
+  await supabase
+    .from("access_tokens")
+    .insert({
+      owner_username: requestedProfile,
+      token: token,
+      access_type: "friend",
+      expires_at: tokenExpiry
+    });
 
-    // Redirect with token
-window.location.href =
-  "/u/" + requestedProfile + "?token=" + token;
+  window.location.href =
+    "/u/" + requestedProfile + "?token=" + token;
+
+});
 
 /* =========================
    HASH FUNCTION
@@ -137,5 +123,4 @@ async function hashPassword(pass) {
   return Array.from(new Uint8Array(buffer))
     .map(b => b.toString(16).padStart(2, "0"))
     .join("");
-
 }
