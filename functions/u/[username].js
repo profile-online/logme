@@ -13,7 +13,6 @@ export async function onRequest(context) {
     {
       headers: {
         apikey: context.env.SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${context.env.SUPABASE_ANON_KEY}`,
         "Content-Type": "application/json"
       }
     }
@@ -35,7 +34,6 @@ export async function onRequest(context) {
     {
       headers: {
         apikey: context.env.SUPABASE_ANON_KEY,
-        Authorization: `Bearer ${context.env.SUPABASE_ANON_KEY}`,
         "Content-Type": "application/json"
       }
     }
