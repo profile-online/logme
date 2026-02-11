@@ -120,9 +120,8 @@ friendBtn.addEventListener("click", async () => {
   });
 
     // Redirect with token
-    window.location.href =
-  profile.redirect_url + "?token=" + token;
-});
+window.location.href =
+  "/u/" + requestedProfile + "?token=" + token;
 
 /* =========================
    HASH FUNCTION
@@ -138,4 +137,5 @@ async function hashPassword(pass) {
   return Array.from(new Uint8Array(buffer))
     .map(b => b.toString(16).padStart(2, "0"))
     .join("");
+
 }
