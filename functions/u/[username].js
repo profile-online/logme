@@ -12,8 +12,10 @@ export async function onRequest(context) {
     `${context.env.SUPABASE_URL}/rest/v1/access_tokens?token=eq.${token}&owner_username=eq.${username}&expires_at=gt.${new Date().toISOString()}`,
     {
       headers: {
-        apikey: context.env.SUPABASE_ANON_KEY,
-        "Content-Type": "application/json"
+      apikey: context.env.SUPABASE_SERVICE_ROLE_KEY,
+      Authorization: `Bearer ${context.env.SUPABASE_SERVICE_ROLE_KEY}`,
+      "Content-Type": "application/json"
+        }
       }
     }
   );
@@ -32,9 +34,11 @@ export async function onRequest(context) {
   const profileFetch = await fetch(
     `${context.env.SUPABASE_URL}/rest/v1/profiles?username=eq.${username}&select=redirect_url`,
     {
-      headers: {
-        apikey: context.env.SUPABASE_ANON_KEY,
-        "Content-Type": "application/json"
+     headers: {
+      apikey: context.env.SUPABASE_SERVICE_ROLE_KEY,
+      Authorization: `Bearer ${context.env.SUPABASE_SERVICE_ROLE_KEY}`,
+      "Content-Type": "application/json"
+        }
       }
     }
   );
