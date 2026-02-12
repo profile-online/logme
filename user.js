@@ -119,9 +119,26 @@ document.getElementById("createFriendBtn")
 ========================= */
 
 document.getElementById("goProfileBtn")
-.addEventListener("click", () => {
+.addEventListener("click", async () => {
+
+  const token = crypto.randomUUID();
+
+  const tokenExpiry =
+    new Date(Date.now() + 60 * 60 * 1000); // 1 hour
+
+  await supabase
+    .from("access_tokens")
+    .insert({
+      owner_username: currentUserProfile.username,
+      token: token,
+      access_type: "owner",
+      expires_at: tokenExpiry
+    });
+
   window.location.href =
-    "/u/" + currentUserProfile.username;
+    "/u/" + currentUserProfile.username +
+    "?token=" + token;
+
 });
 
 /* =========================
@@ -196,3 +213,4 @@ window.revokeFriend = async function(id) {
   loadFriendAccess();
 
 };
+
