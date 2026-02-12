@@ -3,6 +3,9 @@ export async function onRequest(context) {
   const url = new URL(context.request.url);
   const token = url.searchParams.get("token");
 
+  // =========================
+  // REQUIRE TOKEN
+  // =========================
   if (!token) {
     return new Response("Unauthorized - No token", { status: 401 });
   }
@@ -10,7 +13,6 @@ export async function onRequest(context) {
   // =========================
   // VALIDATE TOKEN
   // =========================
-
   const tokenCheck = await fetch(
     `${context.env.SUPABASE_URL}/rest/v1/access_tokens?token=eq.${token}&owner_username=eq.${username}&expires_at=gt.${new Date().toISOString()}`,
     {
@@ -22,7 +24,6 @@ export async function onRequest(context) {
     }
   );
 
-  // If Supabase request fails completely
   if (!tokenCheck.ok) {
     const errorText = await tokenCheck.text();
     return new Response(
@@ -33,7 +34,6 @@ export async function onRequest(context) {
 
   const tokenData = await tokenCheck.json();
 
-  // If token not found or expired
   if (!tokenData || tokenData.length === 0) {
     return new Response(
       "Unauthorized - Invalid or expired token",
@@ -42,9 +42,8 @@ export async function onRequest(context) {
   }
 
   // =========================
-  // FETCH PROFILE
+  // FETCH PROFILE REDIRECT URL
   // =========================
-
   const profileFetch = await fetch(
     `${context.env.SUPABASE_URL}/rest/v1/profiles?username=eq.${username}&select=redirect_url`,
     {
@@ -72,29 +71,41 @@ export async function onRequest(context) {
 
   const externalUrl = profileData[0].redirect_url;
 
-  // =========================
-  // FETCH EXTERNAL PROFILE
-  // =========================
+  if (!externalUrl) {
+    return new Response("Redirect URL not configured", { status: 400 });
+  }
 
+  // =========================
+  // FETCH EXTERNAL SITE
+  // =========================
   try {
-    const externalResponse = await fetch(externalUrl);
+    const externalResponse = await fetch(externalUrl, {
+      headers: {
+        "User-Agent": "Mozilla/5.0 (Cloudflare Worker Proxy)",
+        "Accept": "text/html,application/xhtml+xml"
+      }
+    });
 
     if (!externalResponse.ok) {
       return new Response(
-        "Profile not reachable",
-        { status: 404 }
+        "Profile not reachable. Status: " + externalResponse.status,
+        { status: 500 }
       );
     }
 
+    const contentType = externalResponse.headers.get("Content-Type") || "text/html";
     const html = await externalResponse.text();
 
     return new Response(html, {
-      headers: { "Content-Type": "text/html" }
+      headers: {
+        "Content-Type": contentType,
+        "Cache-Control": "no-store"
+      }
     });
 
   } catch (error) {
     return new Response(
-      "Error loading profile",
+      "Error loading profile: " + error.message,
       { status: 500 }
     );
   }
